@@ -20,11 +20,11 @@ class PreciousStone:
         return f'Name: {self.name} , Carat: {self.carat}, Color: {self.color}, Clarity: {self.clarity} ' \
                f', Price per Carat: {self.price_per_carat}'
 
-    @staticmethod
-    def get_instance():
-        if PreciousStone.__instance is None:
-            PreciousStone.__instance = PreciousStone()
-        return PreciousStone.__instance
+    @classmethod
+    def get_instance(cls):
+        if cls.__instance is None:
+            cls.__instance = cls()
+        return cls.__instance
 
     def increase_clarity(self):
         self.clarity = self.clarity + 1
