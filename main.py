@@ -1,5 +1,5 @@
 from PreciousStone import PreciousStone
-
+ 
 if __name__ == '__main__':
     stones = [PreciousStone() for _ in range(2)]
     stones[1] = PreciousStone("Diamond", 2.356, "Blue", 0.72, 29.2)
