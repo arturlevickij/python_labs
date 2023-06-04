@@ -20,8 +20,8 @@ class DecorationStone(Stone):
         """
 
     # pylint: disable=too-many-arguments
-    def __init__(self, name="", color="", material="", price_per_gram=0, weight_in_gram=0):
-        super().__init__(name, color)
+    def __init__(self, name="", color="",weight = 0, material="", price_per_gram=0, weight_in_gram=0):
+        super().__init__(name, color, weight)
         self.material = material
         self.price_per_gram = price_per_gram
         self.weight_in_gram = weight_in_gram

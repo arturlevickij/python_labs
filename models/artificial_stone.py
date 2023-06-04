@@ -20,18 +20,24 @@ class ArtificialPreciousStone(Stone):
     """
 
     # pylint: disable=too-many-arguments
-    def __init__(self, name="", color="", lab_name="",
+    def __init__(self, name="", color="", weight = 0 ,lab_name="",
                  weight_in_gram=0.0, price_per_gram=0.0):
-        super().__init__(name, color)
+        super().__init__(name, color, weight)
         self.lab_name = lab_name
         self.weight_in_gram = weight_in_gram
         self.price_per_gram = price_per_gram
 
+    data_set = {"gold", "diamonds"}
+
+    def __iter__(self):
+        return iter(self.weight)
     def get_full_price(self):
         """
             Returns a list of sports supported by the skating rink.
         """
         return self.price_per_gram * self.weight_in_gram
+
+
 
     def __str__(self):
         return f'{super().__str__()}, Lab Name: {self.lab_name}' \
