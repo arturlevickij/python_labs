@@ -1,25 +1,27 @@
-from manager.stone_manager import StoneManager
-
-
 class MaterialSetManager:
-    def __init__(self, regular_manager: StoneManager):
-        self.regular_manager = regular_manager
+    def __init__(self, stone_manager):
+        self.stone_manager = stone_manager
+        self.index = 0
 
     def __iter__(self):
-        for stone in self.regular_manager:
-            yield from stone.materials
+        return self
 
     def __len__(self):
-        return sum(len(stone.materials) for stone in self.regular_manager)
+        return sum(len(obj.data_set) for obj in self.stone_manager)
 
     def __getitem__(self, index):
-        for stone in self.regular_manager:
-            if index < len(stone.materials):
-                return list(stone.materials)[index]
-            index -= len(stone.materials)
+        for obj in self.stone_manager:
+            if index < len(obj.data_set):
+                return list(obj.data_set)[index]
+            index -= len(obj.data_set)
         raise IndexError("Index out of range")
 
     def __next__(self):
-        for stone in self.regular_manager:
-            for material in stone.materials:
-                yield material
+        sets = [stone.data_set for stone in self.stone_manager.stones]
+        flattened_list = [item for item_set in sets for item in item_set]
+        if self.index < len(flattened_list):
+            item = flattened_list[self.index]
+            self.index += 1
+            return item
+        else:
+            raise StopIteration
