@@ -27,6 +27,9 @@ class ArtificialPreciousStone(Stone):
         self.weight_in_gram = weight_in_gram
         self.price_per_gram = price_per_gram
 
+    def __iter__(self):
+        return iter(self.weight)
+
     def get_full_price(self):
         """
             Returns a list of sports supported by the skating rink.
