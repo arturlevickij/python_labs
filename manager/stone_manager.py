@@ -16,6 +16,15 @@ class StoneManager:
     def __init__(self):
         self.stones = []
 
+    def __len__(self):
+        return len(self.stones)
+
+    def __getitem__(self, index):
+        return self.stones[index]
+
+    def __iter__(self):
+        return iter(self.stones)
+
     def add_stone(self, stone):
         """
         Adds a stones to the manager's collection.
@@ -45,12 +54,18 @@ class StoneManager:
             color (string): The color to search for.
 
         Returns:
-            list: A list of stadiums with the specified color.
+            list: A list of stones with the specified color.
         """
         return [stone for stone in self.stones if stone.color == color]
 
-    def get_max_stones_weight_list(self):
-        return [stone.get_max_stones_weight() for stone in self.stones]
+    def get_all_stones_full_price_list(self):
+        """
+        Get max stones weight.
+
+        Returns:
+            list: A list of stones with the specified weight.
+        """
+        return [stone.get_full_price() for stone in self.stones]
 
     def enumerated_objects(self):
         """
@@ -66,9 +81,10 @@ class StoneManager:
         Returns a combination of object and result of do_something method.
 
         Returns:
-            list: A list of concatenated strings.
+            list: A list of tuples containing the stone objects and their corresponding full price list.
         """
-        return [f'{stone}: {result}' for stone, result in zip(self.stones, self.get_results_of_do_something())]
+        full_price_list = self.get_all_stones_full_price_list()
+        return [(stone, price) for stone, price in zip(self.stones, full_price_list)]
 
     def get_attributes_by_type(self, data_type):
         """
@@ -80,7 +96,8 @@ class StoneManager:
         Returns:
             dict: A dictionary of attributes filtered by data type.
         """
-        return {key: value for stone in self.stones for key, value in stone.__dict__.items() if isinstance(value, data_type)}
+        return {attribute: type_of_attr for obj in self.stones for attribute, type_of_attr in obj.__dict__.items()
+                if isinstance(type_of_attr, data_type)}
 
     def check_conditions(self, condition):
         """
@@ -92,4 +109,8 @@ class StoneManager:
         Returns:
             dict: A dictionary with "all" and "any" keys indicating the result of the condition.
         """
-        return {"all": all(condition(stone) for stone in self.stones), "any": any(condition(stone) for stone in self.stones)}
+        return {
+            'all': all(condition(obj) for obj in self.stones),
+            'any': any(condition(obj) for obj in self.stones)
+        }
+
