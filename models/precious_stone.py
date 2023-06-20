@@ -2,8 +2,7 @@
 This module provides a Stone class for managing stones.
 """
 from models.stone import Stone
-from exceptions.exceptions import NegativeValueException
-from decorator.logged import logged
+
 
 class PreciousStone(Stone):
     """
@@ -22,36 +21,14 @@ class PreciousStone(Stone):
         """
 
     # pylint: disable=too-many-arguments
-    def __init__(self, name="", color="", weight = 0, carat=0.0, clarity=0.0,
+    def __init__(self, name="", color="", carat=0.0, clarity=0.0,
                  price_per_gram=0.0, weight_in_gram=0):
-        super().__init__(name, color, weight)
+        super().__init__(name, color)
         self.carat = carat
         self.clarity = clarity
         self.price_per_gram = price_per_gram
         self.weight_in_gram = weight_in_gram
 
-    @logged(NegativeValueException, "console")
-    def add_attendees(self, count):
-        """
-        Adds the specified number of attendees to the stadium.
-        If the new attendance exceeds the stadium capacity, a message is printed.
-
-        Args:
-            count (int): The number of attendees to add.
-
-        Raises:
-            NegativeValueException: If the 'count' parameter is a negative value.
-            TooManyArguments: If the new attendance exceeds the stadium capacity.
-        """
-        if count < 0:
-            raise NegativeValueException("count")
-        attendance = self.current_attendance + count
-
-
-    data_set = {"minerals", "crystals"}
-
-    def __iter__(self):
-        return iter(self.get_full_price())
     def get_total_price(self):
         """
             Returns a stones total price.
