@@ -20,8 +20,8 @@ class SemiPreciousStone(Stone):
     """
 
     # pylint: disable=too-many-arguments
-    def __init__(self, name="", color="",weight = 0, polarized=0, carat=0, price_per_gram=0, weight_in_gram=0):
-        super().__init__(name, color, weight)
+    def __init__(self, name="", color="", polarized=0, carat=0, price_per_gram=0, weight_in_gram=0):
+        super().__init__(name, color)
         self.polarized = polarized
         self.carat = carat
         self.price_per_gram = price_per_gram
