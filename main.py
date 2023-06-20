@@ -32,10 +32,3 @@ if __name__ == '__main__':
     print("Stone with color:")
     for stone in find_with_color:
         print(stone)
-
-
-    print(stone_manager.enumerated_objects())
-    print(stone_manager.get_attributes_by_type(int))
-    print(stone_manager.check_conditions(10))
-    print(stone_manager.get_max_stones_weight_list())
-    print(stone_manager.get_zip_results())
