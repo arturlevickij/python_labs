@@ -40,3 +40,6 @@ if __name__ == '__main__':
     print(stone_manager.get_max_stones_weight_list())
     print(stone_manager.get_zip_results())
 
+    new_stone = PreciousStone("Diamond", "Blue", 15, 10.5, 1.2, 100.5, 50)
+    new_stone.increase_price(-10)
+
