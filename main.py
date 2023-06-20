@@ -32,11 +32,48 @@ if __name__ == '__main__':
     print("Stone with color:")
     for stone in find_with_color:
         print(stone)
+    print("\n")
+
+    enumerated_objects = stone_manager.enumerated_objects()
+    print("Stone number:")
+    for stone in enumerated_objects:
+        print(stone)
+    print("\n")
+
+    get_attributes_by_type = stone_manager.get_attributes_by_type(int)
+    print("Stone type int:")
+    for stone in get_attributes_by_type:
+        print(stone)
+    print("\n")
+
+    get_all_stones_full_price_list = stone_manager.get_all_stones_full_price_list()
+    print("Stone full price list:")
+    for stone in get_all_stones_full_price_list:
+        print(stone)
+    print("\n")
+
+    get_zip_results = stone_manager.get_zip_results()
+    print("Stone zip:")
+    for stone in get_zip_results:
+        print(stone)
+    print("\n")
 
 
-    print(stone_manager.enumerated_objects())
-    print(stone_manager.get_attributes_by_type(int))
-    print(stone_manager.check_conditions(10))
-    print(stone_manager.get_max_stones_weight_list())
-    print(stone_manager.get_zip_results())
+    def check_conditions(stone):
+        """
 
+        :param stone:
+        :return:
+        """
+        return stone.weight > 10
+
+
+    result = stone_manager.check_conditions(check_conditions)
+    print(result)
+    print("\n")
+
+    set_manager = MaterialSetManager(stone_manager)
+
+    print("Number of items in SetManager:", len(set_manager))
+    for item in set_manager:
+        print(item)
